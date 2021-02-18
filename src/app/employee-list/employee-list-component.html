@@ -1,0 +1,46 @@
+<mat-card>
+<div class="row">
+<div class="col s6">
+<form #postForm = "ngForm" (ngSubmit) = "addPost(postForm)">
+<input type="hidden" name="_id" #_id = "ngModel" [(ngModel)] = "empService.selectedEmployee._id" required>
+<span>Name</span>
+<input type="text" name="name" #name = "ngModel" [(ngModel)] = "empService.selectedEmployee.name" required>
+<span>Age</span>
+<input type="number" name="age" #age = "ngModel" [(ngModel)] = "empService.selectedEmployee.age" required>
+<span>Position</span>
+<input type="text" name="position" #position = "ngModel" [(ngModel)] = "empService.selectedEmployee.position" required>
+<span>Department</span>
+<input type="text" name="department" #department = "ngModel" [(ngModel)] = "empService.selectedEmployee.department" required>
+<span>Salary</span>
+<input type="number" name="salary" #salary = "ngModel" [(ngModel)] = "empService.selectedEmployee.salary" required>
+<center>
+<button mat-raised-button color = "primary"><i class="material-icons">add</i></button>
+</center>
+</form>
+</div>
+<div class="col s6"><table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>Position</th>
+<th>Department</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody *ngIf = "empService.emp">
+<tr *ngFor = "let employees of empService.emp">
+<td>{{employees?.name}}</td>
+<td>{{employees?.age}}</td>
+<td>{{employees?.position}}</td>
+<td>{{employees?.department}}</td>
+<td>{{employees?.salary}}</td>
+<td><i class="material-icons" (click) = "onEdit(employees)">edit</i></td>
+<td><i class="material-icons" (click) = "deleteEmployees(employees._id)">delete</i></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</mat-card>
